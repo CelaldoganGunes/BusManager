@@ -2,9 +2,9 @@
 {
     internal class Program
     {
-        public const int SEED = 31;
+        public const int SEED = 35;
         public static Random random = new Random(SEED);
-        public const int YOLCU_SAYISI = 40;
+        public const int YOLCU_SAYISI = 20;
 
         public static double[,] uzaklikMatrisi = new double[YOLCU_SAYISI, YOLCU_SAYISI];
         public static string[] yolcuIsimleri = new string[YOLCU_SAYISI];
@@ -126,6 +126,7 @@
 
             }
 
+            #endregion
 
             // Otobüs dizilimini ekrana yazdır.
             for (int koltukNumarasi = 0; koltukNumarasi < YOLCU_SAYISI; koltukNumarasi++)
@@ -143,14 +144,6 @@
 
             Console.WriteLine("");
             Console.WriteLine("Toplam Uzaklık: " + mesafeToplamlari.Sum());
-
-
-
-
-
-
-
-            #endregion
 
             Console.ReadKey();
         }
