@@ -2,9 +2,8 @@
 {
     internal class Program
     {
-        public const int SEED = 35;
-        public static Random random = new Random(SEED);
-        public const int YOLCU_SAYISI = 20;
+        public static Random random = new Random();
+        public const int YOLCU_SAYISI = 40;
 
         public static double[,] uzaklikMatrisi = new double[YOLCU_SAYISI, YOLCU_SAYISI];
         public static string[] yolcuIsimleri = new string[YOLCU_SAYISI];
@@ -66,7 +65,6 @@
 
 
             // İlk yolcuyu yerleştir
-            Random random = new Random(SEED);
             int ilkYolcununNumarasi = random.Next(YOLCU_SAYISI);
             koltuklar[0] = ilkYolcununNumarasi;
             yerlesenYolcular[ilkYolcununNumarasi] = true;
