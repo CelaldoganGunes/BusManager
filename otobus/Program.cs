@@ -13,9 +13,7 @@
 
         static void Main(string[] args)
         {
-
             #region Uzaklik Matrisini Double ile Doldur ve Yolcu Listesini Doldur
-
 
             for (int satir = 0; satir < YOLCU_SAYISI; satir++)
             {
@@ -37,11 +35,11 @@
                         uzaklikMatrisi[satir, sutun] = uzaklikMatrisi[sutun, satir];
                     }
 
-                    string s = string.Format("{0:N2}", uzaklikMatrisi[satir, sutun]);
-                    Console.Write(s + "   ");
+                    //string s = string.Format("{0:N2}", uzaklikMatrisi[satir, sutun]);
+                    //Console.Write(s + "   ");
                 }
-                Console.WriteLine("");
-                Console.WriteLine("");
+                //Console.WriteLine("");
+                //Console.WriteLine("");
 
             }
 
@@ -69,14 +67,7 @@
             koltuklar[0] = ilkYolcununNumarasi;
             yerlesenYolcular[ilkYolcununNumarasi] = true;
 
-            Console.WriteLine("");
-            Console.WriteLine("İlk kişinin Numarası: " + ilkYolcununNumarasi);
-            Console.WriteLine("");
-
-
-
             // Diğer yolcuları yerleştir
-
 
             for (int koltukNumarasi = 1; koltukNumarasi < koltuklar.Length; koltukNumarasi++) //Ana Döngü
             {
@@ -126,20 +117,38 @@
 
             #endregion
 
-            // Otobüs dizilimini ekrana yazdır.
+            // c maddesi, Otobüs dizilimini ekrana yazdır.
+            Console.WriteLine("Yolcuların Oturuş Sıraları:");
+            Console.WriteLine(" ");
             for (int koltukNumarasi = 0; koltukNumarasi < YOLCU_SAYISI; koltukNumarasi++)
             {
-                int kisininIndeksi = koltuklar[koltukNumarasi];
-
-                string s = string.Format("{0:N2}", mesafeToplamlari[kisininIndeksi]);
-                Console.Write("[ No: " + koltuklar[koltukNumarasi] + " Name: " + yolcuIsimleri[koltuklar[koltukNumarasi]] + " Dis: " + s + "] ");
+                Console.Write("[Koltuk No: " + (koltukNumarasi + 1) + " Yolcu No: " + koltuklar[koltukNumarasi] + " Yolcu Adi: " + yolcuIsimleri[koltuklar[koltukNumarasi]] + "] ");
                 if (koltukNumarasi % 4 == 3)
                 {
-                    Console.WriteLine(" ");
                     Console.WriteLine(" ");
                 }
             }
 
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+
+
+            // d maddesi, mesafeleri ekrana yazdır.
+            Console.WriteLine("Yolcuların Uzaklıkları:");
+            Console.WriteLine(" ");
+            for (int koltukNumarasi = 0; koltukNumarasi < YOLCU_SAYISI; koltukNumarasi++)
+            {
+                int kisininIndeksi = koltuklar[koltukNumarasi];
+
+                string uzaklik = string.Format("{0:N2}", mesafeToplamlari[kisininIndeksi]);
+                Console.Write("[Koltuk No: " + (koltukNumarasi+1) + " Yolcu No: " + koltuklar[koltukNumarasi] + " Uzaklik: " + uzaklik + "] ");
+                if (koltukNumarasi % 4 == 3)
+                {
+                    Console.WriteLine(" ");
+                }
+            }
+            
+            // e maddesi
             Console.WriteLine("");
             Console.WriteLine("Toplam Uzaklık: " + mesafeToplamlari.Sum());
 
@@ -150,24 +159,17 @@
         {
 
             double uzaklikRandom = random.NextDouble();
-            double tamUzaklik = 0 + (uzaklikRandom * (10 - 0));
-            /*
-             * Bu kısmı internetten aldım.
-             * Double random sayıyı belli tam sayılara çıkartmak için formül böyleymiş.
-            */
+            double tamUzaklik = uzaklikRandom * 10;
             return tamUzaklik;
         }
 
         public static double UzaklikHesapla(int kisininIndeksi, int koltukIndeksi)
         {
-
             if (koltukIndeksi < 0) //İndeks dışına çıkıyorsa o kişi yoktur ve uzaklık 0 dır.
             {
                 return 0;
             }
             return uzaklikMatrisi[kisininIndeksi, koltuklar[koltukIndeksi]];
-
         }
-
     }
 }
